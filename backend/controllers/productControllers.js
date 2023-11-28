@@ -40,6 +40,17 @@ const getTopRatedProducts = asyncHandler(async function (req, res) {
   res.json(products)
 })
 
+
+
+const getProductsByCategory = asyncHandler(async function (req, res) {
+  const pageSize = 8
+  const categoryId = req.query.categoryId
+
+  const products = await Product.find({categoryId})
+
+  return res.json({ products })
+})
+
 // @desc    Fetch specific product
 // @route   GET /api/products/:id
 // @access  Public
@@ -65,7 +76,7 @@ const getProductById = asyncHandler(async function (req, res) {
 // @route   POST /api/products/add
 // @access  Private/Admin
 const addProduct = asyncHandler(async function (req, res) {
-  const { user, name, image, description, category, brand, price, countInStock } = req.body
+  const { user, name, image, description, category, brand, price, countInStock, categoryId } = req.body
 
   const product = await Product.create({
     user,
@@ -76,6 +87,7 @@ const addProduct = asyncHandler(async function (req, res) {
     category,
     price,
     countInStock,
+    categoryId
   })
 
   if (product) {
@@ -133,7 +145,7 @@ const createProductReview = asyncHandler(async (req, res) => {
 // @route   PUT /api/products/:id/update
 // @access  Private/Admin
 const updateProduct = asyncHandler(async function (req, res) {
-  const { name, image, description, category, brand, price, countInStock } = req.body
+  const { name, image, description, category, brand, price, countInStock, categoryId } = req.body
 
   const product = await Product.findById(req.params.id)
 
@@ -145,6 +157,7 @@ const updateProduct = asyncHandler(async function (req, res) {
     product.brand = brand
     product.price = price
     product.countInStock = countInStock
+    product.categoryId= categoryId
 
     product.save()
     res.json(product)
@@ -184,4 +197,5 @@ export {
   updateProduct,
   createProductReview,
   getTopRatedProducts,
+  getProductsByCategory
 }

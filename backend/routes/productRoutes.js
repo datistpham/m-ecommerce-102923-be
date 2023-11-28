@@ -7,12 +7,14 @@ import {
   addProduct,
   updateProduct,
   createProductReview,
-  getTopRatedProducts
+  getTopRatedProducts,
+  getProductsByCategory
 } from '../controllers/productControllers.js'
 import { protect, isAdmin } from '../middleware/authMiddleware.js'
 
 const router = express.Router()
-
+  
+router.route("/category").get(getProductsByCategory)
 router.route('/').get(getProducts)
 router.route('/topRated').get(getTopRatedProducts)
 router.route('/add').post(addProduct)
@@ -20,5 +22,6 @@ router.route('/:id').get(getProductById)
 router.route('/:id/update').put(protect, isAdmin, updateProduct)
 router.route('/:id/delete').delete(protect, isAdmin, deleteProductById)
 router.route('/:id/reviews').post(protect, createProductReview)
+
 
 export default router
