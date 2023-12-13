@@ -12,9 +12,9 @@ const getCategory = expressAsyncHandler(async function (req, res) {
     return res.json({ categories, page, pages: Math.ceil(count / pageSize) })
 })
 
-const getCategoryById= expressAsyncHandler(async (req, res)=> {
+const getCategoryById = expressAsyncHandler(async (req, res) => {
     const categories = await Category.findById(req.params.id)
-    return res.json({categories})
+    return res.json({ categories })
 
 })
 
@@ -71,9 +71,17 @@ const updateCategory = expressAsyncHandler(async (req, res) => {
     }
 })
 
-const updateState= expressAsyncHandler(async (req, res)=> {
-    return res.json({message: "ok"})
+
+
+const updateState = expressAsyncHandler(async (req, res) => {
+    const {appview, webview, state} = req.body
+    const result = await Category.updateMany({}, { $set: { appview, webview, state } });
+    return res.json({ message: "ok", data: {appview, webview, state} })
 })
 
+const getState = expressAsyncHandler(async (req, res) => {
+    const categories = await Category.find({})
+    return res.json({ categories })
+})
 
-export { addCategory, deleteCategory, updateCategory, getCategory, getCategoryById, updateState }
+export { addCategory, deleteCategory, updateCategory, getCategory, getCategoryById, updateState, getState }

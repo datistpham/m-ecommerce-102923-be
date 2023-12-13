@@ -9,6 +9,14 @@ const categorySchema = mongoose.Schema(
         state: {
             type: Number,
             required: false
+        },
+        appview: {
+            type: String,
+            required: false
+        },
+        webview: {
+            type: String,
+            required: false
         }
     },
     {
