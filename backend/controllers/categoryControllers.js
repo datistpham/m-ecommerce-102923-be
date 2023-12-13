@@ -71,5 +71,9 @@ const updateCategory = expressAsyncHandler(async (req, res) => {
     }
 })
 
+const updateState= expressAsyncHandler(async (req, res)=> {
+    return res.json({message: "ok"})
+})
 
-export { addCategory, deleteCategory, updateCategory, getCategory, getCategoryById }
+
+export { addCategory, deleteCategory, updateCategory, getCategory, getCategoryById, updateState }

@@ -37,6 +37,7 @@ app.use('/api/orders', orderRoutes)
 app.use('/api/upload', uploadRoutes)
 app.use("/api/recommendation", recommendRoutes)
 app.use("/api/category", categoryRoutes)
+// app.use("/ap")
 
 const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))

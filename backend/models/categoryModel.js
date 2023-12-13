@@ -5,6 +5,10 @@ const categorySchema = mongoose.Schema(
         name: {
             type: String,
             required: true
+        },
+        state: {
+            type: Number,
+            required: false
         }
     },
     {

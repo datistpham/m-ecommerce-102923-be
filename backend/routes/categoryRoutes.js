@@ -1,5 +1,5 @@
 import express from "express"
-import { addCategory, deleteCategory, getCategory, getCategoryById, updateCategory } from "../controllers/categoryControllers.js"
+import { addCategory, deleteCategory, getCategory, getCategoryById, updateCategory, updateState } from "../controllers/categoryControllers.js"
 
 const routes= express.Router()
 
@@ -8,5 +8,6 @@ routes.route("/:id/get").get(getCategoryById)
 routes.route("/add").post(addCategory)
 routes.route("/:id/update").put(updateCategory)
 routes.route("/:id/delete").delete(deleteCategory)
+routes.route("/state").post(updateState)
 
 export default routes
