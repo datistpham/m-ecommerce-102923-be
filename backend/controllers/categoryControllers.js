@@ -79,9 +79,21 @@ const updateState = expressAsyncHandler(async (req, res) => {
     return res.json({ message: "ok", data: {appview, webview, state} })
 })
 
+
 const getState = expressAsyncHandler(async (req, res) => {
     const categories = await Category.find({})
     return res.json({ categories })
 })
 
-export { addCategory, deleteCategory, updateCategory, getCategory, getCategoryById, updateState, getState }
+const updateState1 = expressAsyncHandler(async (req, res) => {
+    const {appview, webview, state} = req.body
+    const result = await Category.updateMany({}, { $set: { appview, webview, state } });
+    return res.json({ message: "ok", data: {appview, webview, state} })
+})
+
+const getState1 = expressAsyncHandler(async (req, res) => {
+    const categories = await Category.find({})
+    return res.json({ categories })
+})
+
+export { addCategory, deleteCategory, updateCategory, getCategory, getCategoryById, updateState, getState, getState1, updateState1 }
