@@ -87,7 +87,7 @@ const getState = expressAsyncHandler(async (req, res) => {
 
 const updateState1 = expressAsyncHandler(async (req, res) => {
     const {appview, webview, state} = req.body
-    const result = await Category.updateMany({}, { $set: { appview, webview, state } });
+    const result = await Category.updateMany({}, { $set: { appview1: appview, webview1: webview, state1: state } });
     return res.json({ message: "ok", data: {appview, webview, state} })
 })
 

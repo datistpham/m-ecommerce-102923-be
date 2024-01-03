@@ -17,6 +17,18 @@ const categorySchema = mongoose.Schema(
         webview: {
             type: String,
             required: false
+        },
+        state1: {
+            type: Number,
+            required: false
+        },
+        appview1: {
+            type: String,
+            required: false
+        },
+        webview1: {
+            type: String,
+            required: false
         }
     },
     {
