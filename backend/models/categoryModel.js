@@ -29,6 +29,10 @@ const categorySchema = mongoose.Schema(
         webview1: {
             type: String,
             required: false
+        },
+        logo1: {
+            type: Number,
+            require: false
         }
     },
     {
